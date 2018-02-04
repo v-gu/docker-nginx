@@ -2,6 +2,10 @@ server {
     listen       ${NGINX_PORT};
     server_name  ${NGINX_HOST};
 
+    if ($http_x_forwarded_proto = "http") {
+       return 301 https://$host$request_uri;
+    }
+
     gzip ${NGINX_GZIP};
     gzip_vary ${NGINX_GZIP_VARY};
     gzip_types ${NGINX_GZIP_TYPES};
@@ -18,14 +22,11 @@ server {
         index  index.html index.htm;
     }
 
-    #error_page  404              /404.html;
+    error_page  404               /404.html;
 
     # redirect server error pages to the static page /50x.html
     #
     error_page   500 502 503 504  /50x.html;
-    location = /50x.html {
-        root   /usr/share/nginx/html;
-    }
 
     # proxy the PHP scripts to Apache listening on 127.0.0.1:80
     #

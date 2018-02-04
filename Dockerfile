@@ -3,6 +3,10 @@ MAINTAINER Vincent Gu <v@bitmart.com>
 
 ENV NGINX_HOST              localhost.localdomain
 ENV NGINX_PORT              80
+ENV NGINX_ERRLOG_OUTPUT     /dev/stderr
+ENV NGINX_ERRLOG_LEVEL      warn
+ENV NGINX_ACCLOG_OUTPUT     /dev/stderr
+ENV NGINX_ACCLOG_LEVEL      main
 
 ENV NGINX_GZIP              on
 ENV NGINX_GZIP_VARY         on

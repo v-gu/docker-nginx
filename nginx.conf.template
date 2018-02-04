@@ -1,7 +1,7 @@
 user  nginx;
 worker_processes  1;
 
-error_log  /dev/stderr warn;
+error_log  ${NGINX_ERRLOG_OUTPUT} ${NGINX_ERRLOG_LEVEL};
 pid        /var/run/nginx.pid;
 
 
@@ -18,7 +18,7 @@ http {
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
 
-    access_log  /dev/stderr main;
+    access_log ${NGINX_ACCLOG_OUTPUT} ${NGINX_ACCLOG_LEVEL};
 
     sendfile        on;
     #tcp_nopush     on;
