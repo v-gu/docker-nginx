@@ -1,8 +1,8 @@
 FROM nginx:1.13.8-alpine-perl
 MAINTAINER Vincent Gu <v@bitmart.com>
 
-ENV NGINX_HOST                  site.localhost.localdomain
-ENV NGINX_REDIRECT_FROM_HOST    localhost.localdomain
+ENV NGINX_HOST                  localhost.localdomain
+ENV NGINX_REDIRECT_FROM_HOST    ""
 ENV NGINX_PORT                  80
 ENV NGINX_ERRLOG_OUTPUT         /dev/stderr
 ENV NGINX_ERRLOG_LEVEL          warn

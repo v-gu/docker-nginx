@@ -1,12 +1,5 @@
 server {
-    # to www
-    listen       ${NGINX_PORT};
-    server_name  ${NGINX_REDIRECT_FROM_HOST};
-    return       301 https://${NGINX_REDIRECT_FROM_HOST}$request_uri;
-}
-
-server {
-    listen       ${NGINX_PORT};
+    listen       ${NGINX_PORT} default_server;
     server_name  ${NGINX_HOST};
 
     # http to https
