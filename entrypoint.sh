@@ -4,6 +4,7 @@ set -e
 # environment variables substitution
 envsubst '\
 ${NGINX_HOST} \
+${NGINX_REDIRECT_FROM_HOST} \
 ${NGINX_PORT} \
 ${NGINX_GZIP} \
 ${NGINX_GZIP_VARY} \
@@ -18,6 +19,7 @@ ${NGINX_ACCLOG_LEVEL} \
 
 envsubst '
 ${NGINX_HOST} \
+${NGINX_REDIRECT_FROM_HOST} \
 ${NGINX_PORT} \
 ${NGINX_GZIP} \
 ${NGINX_GZIP_VARY} \

@@ -1,7 +1,15 @@
 server {
+    # to www
+    listen       ${NGINX_PORT};
+    server_name  ${NGINX_REDIRECT_FROM_HOST};
+    return       301 https://$host$request_uri;
+}
+
+server {
     listen       ${NGINX_PORT};
     server_name  ${NGINX_HOST};
 
+    # http to https
     if ($http_x_forwarded_proto = "http") {
        return 301 https://$host$request_uri;
     }
@@ -10,7 +18,6 @@ server {
     gzip_vary ${NGINX_GZIP_VARY};
     gzip_types ${NGINX_GZIP_TYPES};
 
-    #charset koi8-r;
     #access_log  /var/log/nginx/host.access.log  main;
 
     location / {
