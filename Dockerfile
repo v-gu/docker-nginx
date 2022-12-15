@@ -1,6 +1,8 @@
 FROM nginx:1.13.8-alpine-perl
 MAINTAINER Vincent Gu <v@bitmart.com>
 
+ENV NGINX_MANUAL_CONFIG         "false"
+
 ENV NGINX_HOST                  localhost.localdomain
 ENV NGINX_REDIRECT_FROM_HOST    ""
 ENV NGINX_PORT                  80

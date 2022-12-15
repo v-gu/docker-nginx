@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-# environment variables substitution
-envsubst '\
+if [ "${NGINX_MANUAL_CONFIG}" == "false" ]; then
+    # environment variables substitution
+    envsubst '\
 ${NGINX_HOST} \
 ${NGINX_REDIRECT_FROM_HOST} \
 ${NGINX_PORT} \
@@ -17,7 +18,7 @@ ${NGINX_ACCLOG_OUTPUT} \
 ${NGINX_ACCLOG_LEVEL} \
 ' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
 
-envsubst '
+    envsubst '
 ${NGINX_HOST} \
 ${NGINX_REDIRECT_FROM_HOST} \
 ${NGINX_PORT} \
@@ -32,8 +33,8 @@ ${NGINX_ACCLOG_OUTPUT} \
 ${NGINX_ACCLOG_LEVEL} \
 ' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf
 
-if [ ! -z "${NGINX_REDIRECT_FROM_HOST}" ]; then
-    cat <<EOF >> /etc/nginx/conf.d/default.conf
+    if [ ! -z "${NGINX_REDIRECT_FROM_HOST}" ]; then
+        cat <<EOF >> /etc/nginx/conf.d/default.conf
 
 server {
     # . to www.
@@ -42,6 +43,7 @@ server {
     return       301 https://${NGINX_HOST}\$request_uri;
 }
 EOF
+    fi
 fi
 
 exec "$@"
