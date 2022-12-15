@@ -1,4 +1,4 @@
-FROM nginx:1.13.8-alpine-perl
+FROM nginx:1.23.3-alpine-perl
 MAINTAINER Vincent Gu <v@bitmart.com>
 
 ENV NGINX_MANUAL_CONFIG         "false"
